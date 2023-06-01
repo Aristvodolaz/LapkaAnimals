@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E2E2E2">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/round"
+            android:layout_marginTop="-160dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="190dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ИЩУ ДРУГА"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_btn"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="190dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ХОЧУ ЗАРАБОТАТЬ"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_btn"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="20dp"
+            android:background="@drawable/blue_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:text="ХОЧУ ПОМОГАТЬ"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/anim_fon"/>
+    </LinearLayout>
+
+</RelativeLayout>

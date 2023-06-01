@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "747264810663",
+    "project_id": "lapka2-5144b",
+    "storage_bucket": "lapka2-5144b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747264810663:android:6d6bb7567139f605e58582",
+        "android_client_info": {
+          "package_name": "com.example.newanimals"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDgxq7No17-jpH1mxA7Uc7-6kkXO-8-uA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

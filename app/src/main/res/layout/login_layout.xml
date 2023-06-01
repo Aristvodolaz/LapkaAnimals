@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E2E2E2">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/round"
+            android:layout_marginTop="-160dp"/>
+
+        <TextView
+            android:layout_marginTop="40dp"
+        android:textSize="17dp"
+        android:layout_marginLeft="34dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Логин"
+        android:textColor="#E39D32"/>
+        <EditText
+            android:id="@+id/login"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_marginTop="8dp"
+            android:textSize="17dp"
+            android:layout_marginLeft="34dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Пароль"
+            android:textColor="#E39D32"/>
+        <EditText
+            android:id="@+id/password"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/blue_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:text="ВХОД"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/forget_pass"
+            android:layout_marginTop="8dp"
+            android:textSize="14dp"
+            android:layout_marginLeft="165dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Забыли пароль?"
+            android:textColor="#E39D32"/>
+
+        <ImageView
+            android:layout_marginTop="24dp"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/anim_fon"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
