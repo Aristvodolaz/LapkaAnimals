@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Лапка</string>
-    <string name="wait">Пожалуйста подождите</string>
+    <string name="wait" translatable="false">Пожалуйста подождите</string>
 </resources>

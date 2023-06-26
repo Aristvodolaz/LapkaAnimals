@@ -27,41 +27,41 @@ public class GetDataForSearchPresenter {
     public void getCatData(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dataRef = database.getReference("AdsData");
-
-        ReadRXFirebaseUtil.observeValueEvent(dataRef)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DataSnapshot>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        // Выполняется при подписке
-                    }
-                    @Override
-                    public void onNext(DataSnapshot dataSnapshot) {
-                        AdsData data = dataSnapshot.getValue(AdsData.class);
-                        if(data!=null){
-                            list.add(data);
-                        }
-                        for(int i = 0 ; i < list.size();i++){
-                            if((list.get(i).getTypeAnimals().equals("Кошка")
-                                    || list.get(i).getTypeAnimals().equals("Кот"))
-                                    && list.get(i).getType().equals("10")){
-                                forCat.add(list.get(i));
-                            }
-                        }
-                        view.getAds(forCat);
-                    }
-                    @Override
-                    public void onError(Throwable e) {
-                        view.message(e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        // Выполняется по завершении
-                        processLarge(forCat);
-                    }
-                });
+//
+//        ReadRXFirebaseUtil.observeValueEvent(dataRef)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<DataSnapshot>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        // Выполняется при подписке
+//                    }
+//                    @Override
+//                    public void onNext(DataSnapshot dataSnapshot) {
+//                        AdsData data = dataSnapshot.getValue(AdsData.class);
+//                        if(data!=null){
+//                            list.add(data);
+//                        }
+//                        for(int i = 0 ; i < list.size();i++){
+//                            if((list.get(i).getTypeAnimals().equals("Кошка")
+//                                    || list.get(i).getTypeAnimals().equals("Кот"))
+//                                    && list.get(i).getType().equals("10")){
+//                                forCat.add(list.get(i));
+//                            }
+//                        }
+//                        view.getAds(forCat);
+//                    }
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        view.message(e.getLocalizedMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        // Выполняется по завершении
+//                        processLarge(forCat);
+//                    }
+//                });
     }
 
 
@@ -69,40 +69,40 @@ public class GetDataForSearchPresenter {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dataRef = database.getReference("AdsData");
 
-        ReadRXFirebaseUtil.observeValueEvent(dataRef)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DataSnapshot>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        // Выполняется при подписке
-                    }
-                    @Override
-                    public void onNext(DataSnapshot dataSnapshot) {
-                        AdsData data = dataSnapshot.getValue(AdsData.class);
-                        if(data!=null){
-                            list.add(data);
-                        }
-                        for(int i = 0 ; i < list.size();i++){
-                            if(list.get(i).getTypeAnimals().equals("Собака")
-                                    && list.get(i).getType().equals("10")){
-                                forDog.add(list.get(i));
-                            }
-                        }
-                        view.getAds(forDog);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        view.message(e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        // Выполняется по завершении
-                        processLarge(forDog);
-                    }
-                });
+//        ReadRXFirebaseUtil.observeValueEvent(dataRef)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<DataSnapshot>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        // Выполняется при подписке
+//                    }
+//                    @Override
+//                    public void onNext(DataSnapshot dataSnapshot) {
+//                        AdsData data = dataSnapshot.getValue(AdsData.class);
+//                        if(data!=null){
+//                            list.add(data);
+//                        }
+//                        for(int i = 0 ; i < list.size();i++){
+//                            if(list.get(i).getTypeAnimals().equals("Собака")
+//                                    && list.get(i).getType().equals("10")){
+//                                forDog.add(list.get(i));
+//                            }
+//                        }
+//                        view.getAds(forDog);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        view.message(e.getLocalizedMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        // Выполняется по завершении
+//                        processLarge(forDog);
+//                    }
+//                });
     }
     private static void processLarge(List<AdsData> data){
         System.out.println("Total data count: " + data.size());

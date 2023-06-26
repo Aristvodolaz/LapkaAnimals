@@ -1,12 +1,20 @@
 package com.example.newanimals.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.newanimals.R;
 import com.example.newanimals.activity.MainActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class StartAppFragment extends BaseFragment{
     public static StartAppFragment newInstance() {
@@ -20,15 +28,14 @@ public class StartAppFragment extends BaseFragment{
     protected int layoutId() {
         return R.layout.start_layout;
     }
-
     @Override
     protected void initViews() {
         super.initViews();
-        vhodBtn.setOnClickListener(v->{
-            ((MainActivity)getActivity()).replaceFragment(LoginFragment.newInstance(), false);
+        vhodBtn.setOnClickListener(vi->{
+            ((MainActivity)getActivity()).replaceFragment(LoginFragmentKt.newInstance(),true);
         });
         regBtn.setOnClickListener(v->{
-            ((MainActivity)getActivity()).replaceFragment(ChooseRegFragment.newInstance(), false);
+            ((MainActivity)getActivity()).replaceFragment(ChooseRegFragment.newInstance(),true);
         });
     }
 }

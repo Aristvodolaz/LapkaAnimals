@@ -28,34 +28,36 @@ public class GetInfoAdsPresenter {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dataRef = database.getReference("AdsData");
 
-        ReadRXFirebaseUtil.observeValueEvent(dataRef)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DataSnapshot>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        // Выполняется при подписке
-                    }
-
-                    @Override
-                    public void onNext(DataSnapshot dataSnapshot) {
-                        AdsData data = dataSnapshot.getValue(AdsData.class);
-                        if(data!=null){
-                            ads.add(data);
-                        }
-                        getDataView.getInfoAds(ads);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getDataView.errorMessage(e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        processLarge(ads);
-                    }
-                });
+//        ReadRXFirebaseUtil.observeValueEvent(dataRef)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<DataSnapshot>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        // Выполняется при подписке
+//                    }
+//
+//                    @Override
+//                    public void onNext(DataSnapshot dataSnapshot) {
+//                        AdsData data = dataSnapshot.getValue(AdsData.class);
+//                        if(data!=null){
+//                            ads.add(data);
+//                        }
+//                        for(int i = 0; i <ads.size(); i++){
+//                        }
+//                        getDataView.getInfoAds(ads);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        getDataView.errorMessage(e.getLocalizedMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        processLarge(ads);
+//                    }
+//                });
     }
 
     private static void processLarge(List<AdsData>data){

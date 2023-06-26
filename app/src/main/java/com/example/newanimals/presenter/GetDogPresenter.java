@@ -28,39 +28,39 @@ public class GetDogPresenter {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dataRef = database.getReference("AdsData");
 
-        ReadRXFirebaseUtil.observeValueEvent(dataRef)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DataSnapshot>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        // Выполняется при подписке
-                    }
-                    @Override
-                    public void onNext(DataSnapshot dataSnapshot) {
-                        AdsData data = dataSnapshot.getValue(AdsData.class);
-                        if(data!=null){
-                            list.add(data);
-                        }
-                        for(int i = 0 ; i < list.size();i++){
-                            if(list.get(i).getTypeAnimals().equals("Собака")){
-                                dog.add(list.get(i));
-                            }
-                        }
-                        view.getAds(dog);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        view.message(e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        // Выполняется по завершении
-                        processLarge(dog);
-                    }
-                });
+//        ReadRXFirebaseUtil.observeValueEvent(dataRef)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<DataSnapshot>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        // Выполняется при подписке
+//                    }
+//                    @Override
+//                    public void onNext(DataSnapshot dataSnapshot) {
+//                        AdsData data = dataSnapshot.getValue(AdsData.class);
+//                        if(data!=null){
+//                            list.add(data);
+//                        }
+//                        for(int i = 0 ; i < list.size();i++){
+//                            if(list.get(i).getTypeAnimals().equals("Собака")){
+//                                dog.add(list.get(i));
+//                            }
+//                        }
+//                        view.getAds(dog);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        view.message(e.getLocalizedMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        // Выполняется по завершении
+//                        processLarge(dog);
+//                    }
+//                });
     }
     private static void processLarge(List<AdsData> data){
         System.out.println("Total data count: " + data.size());

@@ -1,6 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#E2E2E2">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="-23dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/round" />
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_gravity="start"
+                    android:id="@+id/back_arrow"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="54dp"
+                    android:src="@drawable/back_arrow"
+                    android:scaleType="fitStart"/>
+                <ImageView
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="7dp"
+                    android:id="@+id/logout"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_height="48dp"
+                    android:src="@drawable/icon__logout"
+                    android:scaleType="fitStart"/>
+
+
+            </LinearLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="90dp"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+
+             android:layout_gravity="bottom|center"/>
+        </FrameLayout>
+        <TextView
+            android:id="@+id/name"
+            android:layout_marginTop="28dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="28dp"
+            android:text="ВЕРОНИКА ПЕТРОВА"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="Возраст"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                />
+            <TextView
+                android:gravity="center"
+                android:text="Город"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textSize="14dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/age"
+                android:textColor="#E39D32"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="18 лет"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                />
+            <TextView
+                android:id="@+id/city"
+                android:textColor="#E39D32"
+                android:gravity="center"
+                android:text="Брянск"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textSize="16dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:text="E-mail"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            />
+        <TextView
+            android:id="@+id/email"
+            android:textColor="#E39D32"
+            android:gravity="center"
+            android:text="kap.moral@mail.ru"
+            android:layout_width="match_parent"
+            android:textSize="16dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Телефон"
+           android:layout_width="match_parent"
+            android:textSize="14dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/phone"
+            android:textColor="#E39D32"
+            android:gravity="center"
+            android:text="+7 (920) 832 52 54"
+            android:layout_width="match_parent"
+            android:textSize="16dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

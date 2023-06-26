@@ -6,7 +6,7 @@ public class PersonData {
     String name;
     String surname;
     String city;
-    String email;
+
     String phone;
     String date_birth;
     String login;
@@ -36,13 +36,6 @@ public class PersonData {
         this.city = city;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getPhone() {
         return phone;
@@ -76,13 +69,12 @@ public class PersonData {
         this.date_birth = date_birth;
     }
 
-    public PersonData(String type, String name_type, String name, String surname, String city, String email, String phone, String date_birth, String login) {
+    public PersonData(String type, String name_type, String name, String surname, String city, String phone, String date_birth, String login) {
         this.type = type;
         this.name_type = name_type;
         this.name = name;
         this.surname = surname;
         this.city = city;
-        this.email = email;
         this.phone = phone;
         this.date_birth = date_birth;
         this.login = login;

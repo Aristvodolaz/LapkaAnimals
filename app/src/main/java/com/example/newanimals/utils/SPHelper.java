@@ -16,6 +16,7 @@ public class SPHelper {
     public static final String NAMETYPE = "NAMETYPE";
     public static final String LOGIN = "LOGIN";
 
+
     public static final String LAT = "lat";
     public static final String LON = "lon";
 
@@ -76,18 +77,20 @@ public class SPHelper {
         return getPrefs().getString(URL_PHOTO, "");
     }
 
-    public static void setLon(Float lon) {
-        getEdit().putFloat(LON, lon).commit();
-    }
-    public static Float getLon() {
-        return getPrefs().getFloat(LON, 0);
-    }
-
-    public static void setLat(Float lat) {
+    public static void setLat(float lat) {
         getEdit().putFloat(LAT, lat).commit();
     }
+
     public static Float getLat() {
         return getPrefs().getFloat(LAT, 0);
+    }
+
+    public static void setLon(float lon) {
+        getEdit().putFloat(LON, lon).commit();
+    }
+
+    public static Float getLon() {
+        return getPrefs().getFloat(LON, 0);
     }
 
     public static void setNametype(String lat) {

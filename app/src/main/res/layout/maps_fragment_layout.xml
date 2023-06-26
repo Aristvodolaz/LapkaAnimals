@@ -3,15 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <fragment-->
-<!--        xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
-<!--        android:id="@+id/maps"/>-->
     <com.yandex.mapkit.mapview.MapView
         android:id="@+id/mapview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:apiKey="12f079b1-d006-468f-b2a0-d0ea01443347"/>
 
 </FrameLayout>

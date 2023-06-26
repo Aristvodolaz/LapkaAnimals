@@ -1,4 +1,4 @@
-package com.example.newanimals.fragment;
+package com.example.newanimals.activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.graphics.Paint;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
+import android.app.Activity;
 import android.os.Handler;
 import android.widget.Toast;
 
@@ -19,59 +21,47 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.newanimals.R;
-import com.example.newanimals.db.AdsData;
-import com.example.newanimals.db.TypeAdressData;
-import com.example.newanimals.presenter.GetInfoAdsPresenter;
 import com.example.newanimals.utils.SPHelper;
-import com.example.newanimals.utils.WaitDialogUtils;
-import com.example.newanimals.view.GetDataView;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
-import com.yandex.mapkit.map.Map;
+
+import com.yandex.mapkit.map.IconStyle;
 import com.yandex.mapkit.map.MapObject;
 import com.yandex.mapkit.map.MapObjectCollection;
 import com.yandex.mapkit.map.PlacemarkMapObject;
 import com.yandex.mapkit.mapview.MapView;
 import com.yandex.runtime.image.ImageProvider;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
-
-public class MapsFragment extends BaseFragment implements LocationListener, GetDataView {
-    private static final int MY_PERMISSION_REQUEST_LOCATION = 859;
-    private GetInfoAdsPresenter presenter;
-    private Map map;
+/**
+ * This example shows a map and moves the camera to the specified point.
+ * Be sure to request the necessary permissions.
+ */
+public class TestActivity extends Activity {
+    /**
+     * Substitute "your_api_key" with a valid API key.
+     *  You can get the key at https://developer.tech.yandex.ru/
+     */
+    private final String MAPKIT_API_KEY = "12f079b1-d006-468f-b2a0-d0ea01443347";
+//    private final Point TARGET_LOCATION = new Point(SPHelper.getLat(),SPHelper.getLon());
     private Double lat , lon;
+    private MapView mapView;
     Handler handler = new Handler();
     Runnable runnable;
-    private List<LatLng> list = new ArrayList<>();
-    private List<TypeAdressData> dataType;
-    private WaitDialogUtils dialogFragment;
-    private MapObjectCollection mapObject;
-    @BindView(R.id.mapview)
-    MapView mapView;
+    MapObjectCollection mapObject;
     Bitmap bitmap;
-    public static MapsFragment newInstance() {
-        return new MapsFragment();
-    }
-
-
+    private static final int MY_PERMISSION_REQUEST_LOCATION = 859;
     @Override
-    protected void initViews() {
-        super.initViews();
-//        MapController mMapController = mMapView.getMapController();
-        MapKitFactory.setApiKey("12f079b1-d006-468f-b2a0-d0ea01443347");
-        MapKitFactory.initialize(getContext());
+    protected void onCreate(Bundle savedInstanceState) {
 
-        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-        if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        MapKitFactory.setApiKey(MAPKIT_API_KEY);
+
+        MapKitFactory.initialize(this);
+        // Creating a MapView.
+        setContentView(R.layout.maps_fragment_layout);
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             try {
                 Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 if(location!=null){
@@ -79,12 +69,13 @@ public class MapsFragment extends BaseFragment implements LocationListener, GetD
                     lat = location.getLatitude();
                     SPHelper.setLon(lon.floatValue());
                     SPHelper.setLat(lat.floatValue());
-                } else Toast.makeText(getContext(), "Ошибка получения местоположения", Toast.LENGTH_SHORT).show();
+//                    PlacemarkMapObject placemarkMapObject = mapObject.addPlacemark(new Point(lat,lon));
+                } else Toast.makeText(this, "Ошибка получения местоположения", Toast.LENGTH_SHORT).show();
             } catch (SecurityException e) {
                 e.printStackTrace();
             }
         } else{
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_REQUEST_LOCATION);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_REQUEST_LOCATION);
         }
         final LocationListener locationListener = new LocationListener() {
             @Override
@@ -94,9 +85,12 @@ public class MapsFragment extends BaseFragment implements LocationListener, GetD
                     lat = location.getLatitude();
                     SPHelper.setLon(lon.floatValue());
                     SPHelper.setLat(lat.floatValue());
+//                    PlacemarkMapObject placemarkMapObject = mapObject.addPlacemark(new Point(lat,lon));
                 }
             }
         };
+        super.onCreate(savedInstanceState);
+        mapView = (MapView)findViewById(R.id.mapview);
         if (lat != null && lon!=null) {
             mapView.getMap().move(
                     new CameraPosition(new Point(lat, lon), 18.0f, 0.0f, 0.0f),
@@ -109,8 +103,8 @@ public class MapsFragment extends BaseFragment implements LocationListener, GetD
         bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.naple);
     }
     private void getPosition(){
-        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-        if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             try {
                 Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 if(location!=null){
@@ -118,14 +112,14 @@ public class MapsFragment extends BaseFragment implements LocationListener, GetD
                     lat = location.getLatitude();
                     SPHelper.setLon(lon.floatValue());
                     SPHelper.setLat(lat.floatValue());
-                    mapView.getMap().getMapObjects().addPlacemark(new Point(lat,lon), ImageProvider.fromBitmap(drawSimpleBitmap()));
+                    mapView.getMap().getMapObjects().addPlacemark(new Point(lat,lon),ImageProvider.fromBitmap(drawSimpleBitmap()));
 //                    PlacemarkMapObject placemarkMapObject = mapObject.addPlacemark(new Point(lat,lon));
-                } else Toast.makeText(getContext(), "Ошибка получения местоположения", Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(this, "Ошибка получения местоположения", Toast.LENGTH_SHORT).show();
             } catch (SecurityException e) {
                 e.printStackTrace();
             }
         } else{
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_REQUEST_LOCATION);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_REQUEST_LOCATION);
         }
         final LocationListener locationListener = new LocationListener() {
             @Override
@@ -137,39 +131,23 @@ public class MapsFragment extends BaseFragment implements LocationListener, GetD
             }
         };
     }
-
-
     public Bitmap drawSimpleBitmap() {
         Bitmap bitmap = Bitmap.createBitmap(24, 24, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
+        // отрисовка плейсмарка
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#E39D32"));
         paint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(24 / 2, 24 / 2, 24 / 2, paint);
         return bitmap;
     }
-
-    private void onMapLoaded(Map loadedMap) {
-        map = loadedMap;
-        mapObject = map.getMapObjects();
-        if(!list.isEmpty() && !dataType.isEmpty()){
-        for(int i= 0 ; i <list.size();i++) {
-            for (TypeAdressData data : dataType) {
-                PlacemarkMapObject placemarkMapObject = mapObject.addPlacemark(new Point(list.get(i).latitude, list.get(i).longitude));
-//                if(data.getType().equals("10"))
-//                    placemarkMapObject.setIcon();
-            }
-        }} else Toast.makeText(getContext(), "Активные объявления отсутствуют!", Toast.LENGTH_SHORT).show();
-    }
-
     @Override
-    public void onDestroy() {
+    protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacks(runnable);
     }
-
     @Override
-    public void onStop() {
+    protected void onStop() {
         mapView.onStop();
         MapKitFactory.getInstance().onStop();
         super.onStop();
@@ -177,7 +155,7 @@ public class MapsFragment extends BaseFragment implements LocationListener, GetD
     }
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
         MapKitFactory.getInstance().onStart();
         mapView.onStart();
@@ -186,34 +164,4 @@ public class MapsFragment extends BaseFragment implements LocationListener, GetD
             getPosition();
         }, 5000);
     }
-
-
-    @Override
-    public void getInfoAds(List<AdsData> data) {
-        dialogFragment.dismiss();
-        List<LatLng> list = new ArrayList<>();
-        for (int i = 0 ; i<data.size(); i++){
-            list.add(new com.google.android.gms.maps.model.LatLng(data.get(i).getLat(), data.get(i).getLon()));
-            dataType.add(new TypeAdressData(data.get(i).getType(), data.get(i).getAddress()));
-        }
-    }
-
-    @Override
-    public void errorMessage(String err) {
-        Toast.makeText(getContext(), err, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected int layoutId() {
-        return R.layout.maps_fragment_layout;
-    }
-
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-        lon = location.getLongitude();
-        SPHelper.setLon(lon.floatValue());
-        lat = location.getLatitude();
-        SPHelper.setLat(lat.floatValue());
-    }
-
 }

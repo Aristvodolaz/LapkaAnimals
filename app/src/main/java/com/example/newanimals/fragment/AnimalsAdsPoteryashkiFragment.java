@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newanimals.R;
-import com.example.newanimals.adapter.AddsAdapter;
 import com.example.newanimals.db.AdsData;
 import com.example.newanimals.presenter.GetDataForSearchPresenter;
 import com.example.newanimals.presenter.GetInfoAdsPresenter;
@@ -57,8 +56,8 @@ public class AnimalsAdsPoteryashkiFragment extends BaseFragment implements GetDa
     @Override
     public void getAds(List<AdsData> data) {
         dialogFragment.dismiss();
-        AddsAdapter adapter = new AddsAdapter(getContext(), data);
-        rv.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        rv.setAdapter(adapter);
+//        AddsAdapter adapter = new AddsAdapter(getContext(), data);
+//        rv.setLayoutManager(new GridLayoutManager(getContext(), 2));
+//        rv.setAdapter(adapter);
     }
 }

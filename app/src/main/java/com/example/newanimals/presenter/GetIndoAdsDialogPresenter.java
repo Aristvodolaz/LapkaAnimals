@@ -2,13 +2,11 @@ package com.example.newanimals.presenter;
 
 import com.example.newanimals.db.AdsData;
 import com.example.newanimals.utils.ReadRXFirebaseUtil;
-import com.example.newanimals.utils.SPHelper;
-import com.example.newanimals.view.AdsForLoaderView;
+import com.example.newanimals.view.GetInfoAdsDialogView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -16,20 +14,18 @@ import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class GetAddsForLoaderPresenter {
-    private AdsForLoaderView view;
-    private List<AdsData> ads = new ArrayList<>();
-    private List<AdsData> adsLat = new ArrayList<>();
+public class GetIndoAdsDialogPresenter {
 
+    private GetInfoAdsDialogView view;
+    private List<AdsData> ads;
 
-    public GetAddsForLoaderPresenter(AdsForLoaderView view) {
+    public GetIndoAdsDialogPresenter(GetInfoAdsDialogView view) {
         this.view = view;
     }
 
-    public void getAdsInfo(){
+    public void getInfoAds(String name, String date, String mesto){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dataRef = database.getReference("AdsData");
-
+//        DatabaseReference dataRef = database.getReference("AdsData");
 //        ReadRXFirebaseUtil.observeValueEvent(dataRef)
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -44,19 +40,18 @@ public class GetAddsForLoaderPresenter {
 //                        AdsData data = dataSnapshot.getValue(AdsData.class);
 //                        if(data!=null){
 //                            ads.add(data);
-//                            for(int i = 0 ; i < ads.size(); i++){
-//                                boolean isZone = checkZone(ads.get(i).getLat(),ads.get(i).getLon());
-//                                if(isZone){
-//                                    adsLat.add(ads.get(i));
-//                                }
-//                            }
-//                            if(adsLat!=null)
-//                                view.getAds(adsLat);
+//                        }
+//                        for(int i = 0 ; i < ads.size(); i++){
+//                            if(ads.get(i).getAddress().equals(mesto)
+//                                    && ads.get(i).getDate_lose().equals(date)
+//                                    && ads.get(i).getName_animals().equals(name))
+//                                view.showInfo(ads.get(i));
 //                        }
 //                    }
 //
 //                    @Override
 //                    public void onError(Throwable e) {
+//                        view.showError(e.getLocalizedMessage());
 //                    }
 //
 //                    @Override
@@ -66,14 +61,8 @@ public class GetAddsForLoaderPresenter {
 //                });
     }
 
-    private boolean checkZone(double lat, double lon){
-        double result = 111.2 * Math.sqrt((lon - SPHelper.getLon())*(lon - SPHelper.getLon())
-                + (lat - SPHelper.getLat())*Math.cos(Math.PI*lon/180)*(lat - SPHelper.getLat())*Math.cos(Math.PI*lon/180)) * 1000;
-        if(result>250)
-            return false;
-        else return true;
-    }
     private static void processLarge(List<AdsData> data){
         System.out.println("Total data count: " + data.size());
     }
+
 }

@@ -1,6 +1,8 @@
 package com.example.newanimals;
 import android.content.Context;
-import android.support.multidex.MultiDexApplication;
+
+
+import androidx.multidex.MultiDexApplication;
 
 import com.example.newanimals.db.AdsData;
 import com.example.newanimals.presenter.GetAddsForLoaderPresenter;
@@ -25,11 +27,6 @@ public class ApplicationLoader extends MultiDexApplication implements AdsForLoad
 
     public static ApplicationLoader getInstance() {
         return instance;
-    }
-
-    @Override
-    public Context getApplicationContext() {
-        return instance.getApplicationContext();
     }
 
     @Override

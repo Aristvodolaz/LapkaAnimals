@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.newanimals.R;
 import com.example.newanimals.db.PersonData;
+import com.example.newanimals.fragment.AdsBoardFragment;
+import com.example.newanimals.fragment.AdsCreateFragment;
 import com.example.newanimals.fragment.AdsFragment;
 import com.example.newanimals.fragment.MapsFragment;
 import com.example.newanimals.fragment.PersonalFragment;
@@ -31,7 +33,7 @@ public class WelcomeActivity extends BaseActivity implements PersonDataView {
     ImageView adsBtn;
     @BindView(R.id.add_ads)
     ImageView addBtn;
-    @BindView(R.id.hands)
+    @BindView(R.id.free_hands)
     ImageView volonterBtn;
 
     private PersonDataPresenter presenter;
@@ -46,19 +48,20 @@ public class WelcomeActivity extends BaseActivity implements PersonDataView {
             presenter.getData(user.getEmail());
         }
         userBtn.setOnClickListener(v->{
-           replaceFragment(PersonalFragment.newInstance(), false);
+           replaceFragment(PersonalFragment.newInstance(), true);
         });
         mapBtn.setOnClickListener(v->{
-            replaceFragment(MapsFragment.newInstance(), false);
+            replaceFragment(MapsFragment.newInstance(), true);
         });
         adsBtn.setOnClickListener(v->{
-            replaceFragment(AdsFragment.newInstance(), false);
+            replaceFragment(AdsBoardFragment.newInstance(), true);
         });
         volonterBtn.setOnClickListener(v->{
-            replaceFragment(PersonalFragment.newInstance(), false);
+//            replaceFragment(PersonalFragment.newInstance(), false);
         });
         addBtn.setOnClickListener(v->{
-            startActivity(new Intent(this, AddAdsActivity.class));
+            replaceFragment(AdsCreateFragment.newInstance(), true);
+//            startActivity(new Intent(this, AddAdsActivity.class));
         });
     }
 

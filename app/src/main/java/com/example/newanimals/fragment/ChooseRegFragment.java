@@ -27,13 +27,13 @@ public class ChooseRegFragment extends  BaseFragment{
     protected void initViews() {
         super.initViews();
         findBtn.setOnClickListener(v->{
-            ((MainActivity)getActivity()).replaceFragment(RegistrationFragment.newInstance(0,"user"), false);
+            ((MainActivity)getActivity()).replaceFragment(RegistrationFragment.newInstance("0","user"), false);
         });
         helpBtn.setOnClickListener(v->{
-            ((MainActivity)getActivity()).replaceFragment(RegistrationFragment.newInstance(1, "work_user"), false);
+            ((MainActivity)getActivity()).replaceFragment(RegistrationFragment.newInstance("1", "work_user"), false);
         });
         workBtn.setOnClickListener(v->{
-            ((MainActivity)getActivity()).replaceFragment(RegistrationFragment.newInstance(2,"free_user"), false);
+            ((MainActivity)getActivity()).replaceFragment(RegistrationFragment.newInstance("2","free_user"), false);
         });
     }
 }

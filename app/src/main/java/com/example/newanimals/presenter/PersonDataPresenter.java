@@ -28,38 +28,38 @@ public class PersonDataPresenter {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dataRef = database.getReference("Users");
 
-        ReadRXFirebaseUtil.observeValueEvent(dataRef)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DataSnapshot>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        // Выполняется при подписке
-                    }
-
-                    @Override
-                    public void onNext(DataSnapshot dataSnapshot) {
-                        PersonData data = dataSnapshot.getValue(PersonData.class);
-                        if(data!=null){
-                            list.add(data);
-                        }
-                        for (int i = 0 ; i< list.size(); i++){
-                            if(list.get(i).getLogin().equals(login)){
-                                view.getData(list.get(i));
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        view.message(e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        processLarge(list);
-                    }
-                });
+//        ReadRXFirebaseUtil.observeValueEvent(dataRef)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<DataSnapshot>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        // Выполняется при подписке
+//                    }
+//
+//                    @Override
+//                    public void onNext(DataSnapshot dataSnapshot) {
+//                        PersonData data = dataSnapshot.getValue(PersonData.class);
+//                        if(data!=null){
+//                            list.add(data);
+//                        }
+//                        for (int i = 0 ; i< list.size(); i++){
+//                            if(list.get(i).getLogin().equals(login)){
+//                                view.getData(list.get(i));
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        view.message(e.getLocalizedMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        processLarge(list);
+//                    }
+//                });
     }
 
     private static void processLarge(List<PersonData> data){

@@ -28,10 +28,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends BaseActivity {
     FirebaseAuth auth;
     FirebaseUser user;
-    Double lat, lon;
+    double lon = 0, lat = 0;
     Handler handler = new Handler();
     Runnable runnable;
-
+    LocationManager locationManager;
     private static final int MY_PERMISSION_REQUEST_LOCATION = 859;
     @Override
     protected void initViews(@Nullable Bundle saveInstanceState) {
@@ -39,21 +39,22 @@ public class MainActivity extends BaseActivity {
         user = auth.getCurrentUser();
         if (user != null)
             startActivity(new Intent(this,WelcomeActivity.class));
+//            startActivity(new Intent(this,TestActivity.class));
         else
             replaceFragment(StartAppFragment.newInstance(), false);
 
     }
 
     private void getPosition(){
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             try {
                 Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 if(location!=null){
                     lon = location.getLongitude();
                     lat = location.getLatitude();
-                    SPHelper.setLon(lon.floatValue());
-                    SPHelper.setLat(lat.floatValue());
+                    SPHelper.setLon((float) lon);
+                    SPHelper.setLat((float) lat);
                 } else Toast.makeText(this, "Ошибка получения местоположения", Toast.LENGTH_SHORT).show();
             } catch (SecurityException e) {
                 e.printStackTrace();
@@ -66,10 +67,11 @@ public class MainActivity extends BaseActivity {
             public void onLocationChanged(@NonNull Location location) {
                 lon = location.getLongitude();
                 lat = location.getLatitude();
-                SPHelper.setLon(lon.floatValue());
-                SPHelper.setLat(lat.floatValue());
+                SPHelper.setLon((float) lon);
+                SPHelper.setLat((float) lat);
             }
         };
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 1, locationListener);
     }
     @Override
     protected void onStart() {
