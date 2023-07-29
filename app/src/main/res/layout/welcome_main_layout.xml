@@ -24,6 +24,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ads_btn"
             android:layout_weight="1.25"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
@@ -35,6 +36,14 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ads_full"/>
+            <ImageView
+                android:id="@+id/ads_active"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ads_acitve"
+                android:visibility="gone"/>
             <TextView
                 android:textSize="12dp"
                 android:layout_gravity="center"
@@ -44,6 +53,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/maps_btn"
             android:layout_gravity="right"
             android:layout_weight="1"
             android:layout_width="40dp"
@@ -56,6 +66,14 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/map"/>
+            <ImageView
+                android:id="@+id/map_active"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/map_acitve"
+                android:visibility="gone"/>
             <TextView
                 android:textSize="12dp"
                 android:layout_gravity="center"
@@ -64,15 +82,15 @@
                 android:text="Карта"/>
         </LinearLayout>
         <ImageView
-
             android:layout_marginTop="-4dp"
             android:id="@+id/add_ads"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:src="@drawable/add"/>
         <LinearLayout
+            android:id="@+id/hands_btn"
             android:layout_weight="1.25"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
@@ -84,6 +102,14 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/hands"/>
+            <ImageView
+                android:id="@+id/hands_active"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/hands_active"
+                android:visibility="gone"/>
             <TextView
                 android:textSize="12dp"
                 android:layout_gravity="center"
@@ -93,6 +119,7 @@
         </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/person_btn"
         android:layout_weight="1"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
@@ -104,6 +131,14 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/user"/>
+        <ImageView
+            android:id="@+id/user_active"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/user_active"
+            android:visibility="gone"/>
         <TextView
             android:textSize="12dp"
             android:layout_gravity="center"

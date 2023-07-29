@@ -15,6 +15,11 @@ data class AdsDataKt(
     var lat: Float,
     var lon: Float,
     var typeAnimals: String,
-    var imgUrl: String
-
+    var imgUrl: String,
+    var age: String,
+    var poroda: String,
+    var color: String,
+    var pol:String,
+    var imgUser: String,
+    var phone: String
 )

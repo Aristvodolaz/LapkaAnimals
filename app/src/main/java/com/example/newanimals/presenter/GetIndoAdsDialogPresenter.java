@@ -1,6 +1,6 @@
 package com.example.newanimals.presenter;
 
-import com.example.newanimals.db.AdsData;
+import com.example.newanimals.db.AdsDataKt;
 import com.example.newanimals.utils.ReadRXFirebaseUtil;
 import com.example.newanimals.view.GetInfoAdsDialogView;
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +17,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class GetIndoAdsDialogPresenter {
 
     private GetInfoAdsDialogView view;
-    private List<AdsData> ads;
+    private List<AdsDataKt> ads;
 
     public GetIndoAdsDialogPresenter(GetInfoAdsDialogView view) {
         this.view = view;
@@ -61,7 +61,7 @@ public class GetIndoAdsDialogPresenter {
 //                });
     }
 
-    private static void processLarge(List<AdsData> data){
+    private static void processLarge(List<AdsDataKt> data){
         System.out.println("Total data count: " + data.size());
     }
 

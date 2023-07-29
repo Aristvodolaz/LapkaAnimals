@@ -6,8 +6,8 @@ import rx.schedulers.Schedulers;
 
 public class BaseDataProvider {
     protected Observable.Transformer schedulerTransformer;
-    protected ApiService service = ServiceModule.getInstance().getService();
-    protected ApiService serviceYandex = ServiceModule.getInstance().getServiceYandex();
+    protected ApiService serviceDaDataAddress = ServiceModule.getInstance().getServiceAddress();
+    protected ApiService serviceDaDataCoordinates = ServiceModule.getInstance().getServiceCoordinates();
 
 
     public BaseDataProvider() {

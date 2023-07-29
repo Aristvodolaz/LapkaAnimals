@@ -177,7 +177,7 @@ class LoginFragmentKt: Fragment() {
                         if (TextUtils.isEmpty(valueLogin) || TextUtils.isEmpty(valuePass)) {
                             Toast.makeText(context, "Заполните все поля", Toast.LENGTH_LONG).show()
                         } else {
-                            auth(valueLogin, valuePass)
+                            auth(valueLogin.trim(), valuePass.trim())
                         }
                     },
                     modifier = Modifier

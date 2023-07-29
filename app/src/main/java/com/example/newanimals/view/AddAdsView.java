@@ -6,4 +6,6 @@ public interface AddAdsView {
     void onUploadSuccess(String str);
 
     void onUploadError(String localizedMessage);
+
+    void getCoordinates(String lat, String lon);
 }

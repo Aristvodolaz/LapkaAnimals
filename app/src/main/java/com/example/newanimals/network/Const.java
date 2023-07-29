@@ -1,11 +1,12 @@
 package com.example.newanimals.network;
 
 public class Const {
-    public static final String API_ENDPOINT = "";
-    public static final String YANDEX_API = "https://geocode-maps.yandex.ru/1.x/";
-    public static final String YANDEX_API_KEY ="807f9e59-2b5f-46e8-bd0d-2421fba972fa";
-    public static final String YANDEX_API_FORMAT ="json";
+    public static final String DADATA_TOKEN  = "Token 85dcdbb9b5754718170d0fd0141f6833bbaa4623";
+    public static final String DADATA_SECRET = "d7042edb7158e288c08f2c30ed40202d46e67904";
+    public static final String DADATA_API_ADDRESS = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/";
+    public static final String DADATA_GEOCODER = "https://cleaner.dadata.ru/api/v1/clean/";
 
     public static final String ABS = "/infoAbs";
+    public static final String ADDRESS_DADATA = "address";
 
 }

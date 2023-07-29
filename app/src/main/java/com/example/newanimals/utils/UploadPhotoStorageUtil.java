@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.core.Completable;
 
 public class UploadPhotoStorageUtil {
 
-    private FirebaseStorage storage;
+    private static FirebaseStorage storage;
     private static StorageReference storageReference;
 
     public  UploadPhotoStorageUtil() {
@@ -22,6 +22,8 @@ public class UploadPhotoStorageUtil {
     }
 
     public static Completable uploadePhoto(Uri image, String fileName){
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         StorageReference photoref = storageReference.child(fileName);
 
         return Completable.create(emmiter->{

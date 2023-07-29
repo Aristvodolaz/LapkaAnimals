@@ -125,4 +125,9 @@ public class AddAdsAnimalsFragment extends BaseFragment implements AddAdsView {
     public void onUploadError(String localizedMessage) {
         Toast.makeText(getContext(), localizedMessage, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void getCoordinates(String lat, String lon) {
+
+    }
 }

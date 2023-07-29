@@ -1,19 +1,26 @@
 package com.example.newanimals.network;
 
-import com.example.newanimals.db.AdsData;
-import com.example.newanimals.network.response.GeocoderResponse;
+import com.example.newanimals.db.AdsDataKt;
+import com.example.newanimals.network.request.GeocoderAddressBody;
+import com.example.newanimals.network.response.DaDataGeocoderResponse;
+import com.example.newanimals.network.response.DaDataResponse;
 
-import retrofit2.Response;
+import java.util.List;
+
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
 public interface ApiService {
 
     @GET(Const.ABS)
-    Observable<AdsData> getAds(@Query("session") String session);
+    Observable<AdsDataKt> getAds(@Query("session") String session);
 
-    @GET
-    Observable<GeocoderResponse> getAddress(@Query("format") String format, @Query("apikey") String key, @Query("geocode") String geocode);
+    @GET(Const.ADDRESS_DADATA)
+    Observable<DaDataResponse> getAddressDaData(@Query("query") String query);
+
+    @POST(Const.ADDRESS_DADATA)
+    Observable<List<DaDataGeocoderResponse>> getCoordinates(@Body List<String> body);
 }

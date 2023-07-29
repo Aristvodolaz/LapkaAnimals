@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -38,7 +43,15 @@
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.WelcomeActivity" />
         <activity android:name=".activity.AddAdsActivity" />
-        <activity android:name=".activity.TestActivity" />
+        <activity android:name=".activity.AdsServiceFixActivity" />
+        <activity android:name=".activity.AdsFixActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package com.example.newanimals.presenter;
 
-import com.example.newanimals.db.AdsData;
 import com.example.newanimals.db.PersonData;
 import com.example.newanimals.utils.ReadRXFirebaseUtil;
 import com.example.newanimals.view.PersonDataView;

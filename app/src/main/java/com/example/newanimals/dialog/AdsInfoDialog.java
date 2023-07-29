@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.newanimals.R;
-import com.example.newanimals.db.AdsData;
+import com.example.newanimals.db.AdsDataKt;
 import com.example.newanimals.fragment.BaseFragment;
 import com.example.newanimals.presenter.GetIndoAdsDialogPresenter;
 import com.example.newanimals.utils.WaitDialogUtils;
@@ -58,7 +58,7 @@ public class AdsInfoDialog extends BottomSheetDialogFragment implements GetInfoA
     }
 
     @Override
-    public void showInfo(AdsData data) {
+    public void showInfo(AdsDataKt data) {
 
     }
 

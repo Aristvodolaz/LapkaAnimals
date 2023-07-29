@@ -1,6 +1,6 @@
 package com.example.newanimals.presenter;
 
-import com.example.newanimals.db.AdsData;
+import com.example.newanimals.db.AdsDataKt;
 import com.example.newanimals.utils.ReadRXFirebaseUtil;
 import com.example.newanimals.utils.SPHelper;
 import com.example.newanimals.view.AdsForLoaderView;
@@ -18,8 +18,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class GetAddsForLoaderPresenter {
     private AdsForLoaderView view;
-    private List<AdsData> ads = new ArrayList<>();
-    private List<AdsData> adsLat = new ArrayList<>();
+    private List<AdsDataKt> ads = new ArrayList<>();
+    private List<AdsDataKt> adsLat = new ArrayList<>();
 
 
     public GetAddsForLoaderPresenter(AdsForLoaderView view) {
@@ -73,7 +73,7 @@ public class GetAddsForLoaderPresenter {
             return false;
         else return true;
     }
-    private static void processLarge(List<AdsData> data){
+    private static void processLarge(List<AdsDataKt> data){
         System.out.println("Total data count: " + data.size());
     }
 }

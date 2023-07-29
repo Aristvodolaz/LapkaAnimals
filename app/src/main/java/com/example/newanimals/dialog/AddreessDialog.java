@@ -1,132 +1,145 @@
 package com.example.newanimals.dialog;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newanimals.R;
 import com.example.newanimals.adapter.AddressAutoAdapter;
-import com.example.newanimals.presenter.YandexGeocoderPresenter;
-import com.example.newanimals.view.YandexGeocoderView;
+import com.example.newanimals.network.response.DaDataResponse;
+import com.example.newanimals.presenter.AddressPresenter;
+import com.example.newanimals.view.AddressView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import butterknife.BindView;
+public class AddreessDialog  extends BottomSheetDialogFragment implements AddressView {
+    public static final String TAG = AddreessDialog.class.getSimpleName();
+    private static final String TITLE = "title";
+    public static AddreessDialog newInstance(SuggestSelectDialogCallback callback, String title) {
+        AddreessDialog d = new AddreessDialog(callback);
+        Bundle b = new Bundle();
+        b.putString(TITLE, title);
+        d.setArguments(b);
+        return d;
+    }
 
-public class AddreessDialog extends BottomSheetDialogFragment implements YandexGeocoderView {
-    private ArrayList<String> addressList;
+    public static final int DEPARTURE_ADDRESS = 1;
+
+    @Override
+    public void errorMessage(@Nullable String message) {
+
+    }
+
+    @Override
+    public void getAddress(List<DaDataResponse.DaDataResult> data) {
+        if(adapter != null) {
+            adapter.setData(data);
+        }
+    }
+
+    public interface SuggestSelectDialogCallback {
+        void onSuggestSelected(int type, String address);
+    }
+
+    private AddressPresenter presenter;
     private AddressAutoAdapter adapter;
-    private ArrayAdapter<String> addressAdapter;
-    @BindView(R.id.au_comp)
-    AutoCompleteTextView autoCompleteTextView;
-    @BindView(R.id.list_address)
-    ListView listView;
-    private OnAddressSelected views;
-    private YandexGeocoderPresenter presenter;
+    private SuggestSelectDialogCallback callback;
+    private FrameLayout emptyFrame;
 
-
-    public static AddreessDialog newInstance() {
-        return new AddreessDialog();
+    public AddreessDialog(SuggestSelectDialogCallback callback) {
+        this.callback = callback;
     }
 
+    @Nullable
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog);
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof OnAddressSelected){
-            views = (OnAddressSelected) context;
-        } else throw new RuntimeException(context.toString());
-    }
-
-    @NonNull
-    @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.address_dialog, null);
-        builder.setView(v)
-                .setTitle("Введите адрес")
-                .setNegativeButton("Отмена", null);
-
-        addressList =  new ArrayList<>();
-        addressAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, addressList);
-        listView.setAdapter(addressAdapter);
-        presenter = new YandexGeocoderPresenter(this);
-
-        autoCompleteTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                addressList.clear();;
-                addressList.addAll(getAddressSuggestions(charSequence.toString()));
-                addressAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selecteds = addressList.get(i);
-                views.selectedView(selecteds);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.adress_auto_layout, container, false);
+        presenter = new AddressPresenter(this);
+        TextView titleTxt = v.findViewById(R.id.title_txt);
+        titleTxt.setText(getArguments().getString(TITLE, "Адрес"));
+        EditText addressEdit = v.findViewById(R.id.adress_edit);
+        addressEdit.setOnEditorActionListener((v12, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 dismiss();
+                return true;
+            }
+            return false;
+        });
+        ImageView removeImg = v.findViewById(R.id.remove_img);
+        removeImg.setOnClickListener(v1 -> {
+            callback.onSuggestSelected(DEPARTURE_ADDRESS, addressEdit.getText().toString());
+        });
+        emptyFrame = v.findViewById(R.id.empty_frame);
+        emptyFrame.setVisibility(View.VISIBLE);
+        RecyclerView recView = v.findViewById(R.id.rec_view);
+        adapter = new AddressAutoAdapter(getActivity(), mainAddress -> {
+            if(addressEdit.isFocused()) {
+                addressEdit.setText(mainAddress);
+                callback.onSuggestSelected(DEPARTURE_ADDRESS, mainAddress);
             }
         });
-        return builder.create();
+        recView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recView.setAdapter(adapter);
+        addressEdit.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override public void afterTextChanged(Editable s) {
+                emptyFrame.setVisibility(View.GONE);
+                String str = s.toString();
+                presenter.getFullNameAddress(str);
+            }
+        });
+        return v;
     }
 
-    private ArrayList<String> getAddressSuggestions(String toString) {
-            presenter.getTextAddress(toString);
-            return addressList;
+    @NonNull @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override public void onShow(DialogInterface dialogInterface) {
+                BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialogInterface;
+                setupRatio(bottomSheetDialog);
+            }
+        });
+        return dialog;
     }
 
-
-    @Override
-    public void addressText(List<String> address) {
-        addressList.clear();
-        addressList.addAll(address);
-        addressAdapter.notifyDataSetChanged();
+    private void setupRatio(BottomSheetDialog bottomSheetDialog) {
+        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+        BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+        ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+        layoutParams.height = getBottomSheetDialogDefaultHeight();
+        bottomSheet.setLayoutParams(layoutParams);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
-    @Override
-    public void meessageError(String str) {
-        Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
-    }
-    public interface OnAddressSelected {
-        void selectedView(String address);
+    private int getBottomSheetDialogDefaultHeight() {
+        return getWindowHeight() * 90 / 100;
     }
 
+    private int getWindowHeight() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
 }
-
 

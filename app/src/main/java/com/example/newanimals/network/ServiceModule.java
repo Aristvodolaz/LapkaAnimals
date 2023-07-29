@@ -30,37 +30,58 @@ public class ServiceModule {
 
     private ServiceModule() {}
 
-    public ApiService getService() {
-        return getService(Const.API_ENDPOINT, ApiService.class);
-    }
-    public ApiService getServiceYandex(){
-        return getService(Const.YANDEX_API, ApiService.class);
-    }
+    public ApiService getServiceAddress(){ return getDaDataService(Const.DADATA_API_ADDRESS, ApiService.class);}
 
-    public <T> T getService(String url, final Class<T> service) {
+    public ApiService getServiceCoordinates(){
+        return getDaDataCoordinatesService(Const.DADATA_GEOCODER, ApiService.class);
+    }
+    public <T> T getDaDataCoordinatesService(String url, final Class<T> service) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)
-                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS).connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS).addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request original = chain.request();
-                        Request request;
-                        request = original.newBuilder()
+                        Request request = original.newBuilder()
+                                .header("Content-Type", "application/json")
+                                .addHeader("Authorization", Const.DADATA_TOKEN)
+                                .addHeader("X-Secret", Const.DADATA_SECRET)
                                 .method(original.method(), original.body())
                                 .build();
+
                         return chain.proceed(request);
                     }
-                })
-                .build();
+                }).build();
         return new Retrofit.Builder()
                 .baseUrl(url)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build().create(service);
-}
+    }
+    public <T> T getDaDataService(String url, final Class<T> service) {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS).connectTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS).addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request original = chain.request();
+                        Request request = original.newBuilder()
+                                .header("Content-Type", "application/json")
+                                .addHeader("Authorization", Const.DADATA_TOKEN)
+                                .method(original.method(), original.body())
+                                .build();
 
+                        return chain.proceed(request);
+                    }
+                }).build();
+        return new Retrofit.Builder()
+                .baseUrl(url)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build().create(service);
+    }
 
         public void setGson(Gson gson) {
         this.gson = gson;

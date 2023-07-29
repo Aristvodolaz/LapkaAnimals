@@ -1,100 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#D9D9D9">
-    <TextView
-        android:layout_marginTop="80dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:gravity="center"
-        android:text="Выберите тип объявления\n для публикации"/>
-    <LinearLayout
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    <LinearLayout
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+    android:background="#D9D9D9"
+    android:layout_height="wrap_content">
+
+
+    <FrameLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <androidx.appcompat.widget.AppCompatButton
-            android:paddingTop="8dp"
-            android:drawableTop="@drawable/__icon__donate_"
-            android:text="Добрые руки"
-            android:textColor="#E39D32"
-            android:padding="2dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/free_hands"
-            android:background="@drawable/white_btn"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_weight="2"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:padding="2dp"
-            android:drawableTop="@drawable/__icon__doc_search_"
-            android:text="потеряшки"
-            android:textColor="#E39D32"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/find_home"
-            android:background="@drawable/white_btn"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_weight="2"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:padding="2dp"
-            android:drawableTop="@drawable/__icon__home_"
-            android:text="мы ищем дом"
-            android:textColor="#E39D32"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/poteryashki"
-            android:background="@drawable/white_btn"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_weight="2"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <androidx.appcompat.widget.AppCompatButton
-            android:drawableTop="@drawable/hands_active"
-            android:text="lj,hst herb"
-            android:textColor="#47BFE5"
-            android:background="@drawable/white_btn"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:id="@+id/service"
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:layout_weight="2"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:drawableTop="@drawable/hands"
-            android:text="lj,hst herb"
-            android:textColor="#47BFE5"
-            android:background="@drawable/white_btn"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:id="@+id/find_service"
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:layout_weight="2"/>
-    </LinearLayout>
-    </LinearLayout>
+        android:layout_gravity="bottom"
+        android:id="@+id/container"/>
 </RelativeLayout>
