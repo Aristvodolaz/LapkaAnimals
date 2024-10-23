@@ -1,32 +1,30 @@
 package com.example.newanimals.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.newanimals.R;
-import com.example.newanimals.db.PersonData;
 import com.example.newanimals.fragment.AdsBoardFragment;
 import com.example.newanimals.fragment.AdsCreateFragment;
-import com.example.newanimals.fragment.MapFargmentKt;
 import com.example.newanimals.fragment.PersonalFragment;
-import com.example.newanimals.presenter.PersonDataPresenter;
-import com.example.newanimals.utils.SPHelper;
-import com.example.newanimals.view.PersonDataView;
+import com.example.newanimals.fragment.chat.chats_mvvm.ChatListFragment;
+import com.example.newanimals.presenter.reg_and_auth.LoginUserPresenter;
+import com.example.newanimals.view.reg_and_auth.LoginUserView;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.yandex.mapkit.MapKitFactory;
+import com.example.newanimals.fragment.MapFragment;
 
 import butterknife.BindView;
 
-public class WelcomeActivity extends BaseActivity implements PersonDataView {
+public class WelcomeActivity extends BaseActivity implements LoginUserView {
     @BindView(R.id.user)
     ImageView userBtn;
     @BindView(R.id.user_active)
@@ -55,19 +53,20 @@ public class WelcomeActivity extends BaseActivity implements PersonDataView {
     @BindView(R.id.person_btn)
     LinearLayout person_btn;
 
-    private PersonDataPresenter presenter;
+    private LoginUserPresenter presenter;
     FirebaseAuth auth;
     FirebaseUser user;
     @Override
     protected void initViews(@Nullable Bundle saveInstanceState) {
+        FirebaseApp.initializeApp(this);
         MapKitFactory.setApiKey("12f079b1-d006-468f-b2a0-d0ea01443347");
         MapKitFactory.initialize(this);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        replaceFragment(MapFargmentKt.newInstance(), true);
-        presenter = new PersonDataPresenter(this);
+        presenter = new LoginUserPresenter(this);
+        replaceFragment(MapFragment.newInstance(), true);
         if(user!=null){
-            presenter.getData(user.getEmail());
+            presenter.getUserInfo(user.getEmail());
         }
         person_btn.setOnClickListener(v->{
            replaceFragment(PersonalFragment.newInstance(), true);
@@ -82,14 +81,12 @@ public class WelcomeActivity extends BaseActivity implements PersonDataView {
 
            mapActive.setVisibility(View.GONE);
            mapBtn.setVisibility(View.VISIBLE);
-//           person_btn.setBackgroundResource(R.drawable.user_active);
-//           mapBtn.setBackgroundResource(R.drawable.map);
-//            volonterBtn.setBackgroundResource(R.drawable.hands);
-//            adsBtn.setBackgroundResource(R.drawable.ads_full);
+
         });
         maps_btn.setOnClickListener(v->{
-            replaceFragment(MapFargmentKt.newInstance(), true);
-//            replaceFragment(MapsFragment.newInstance(), true);
+//            replaceFragment(MapFargmentKt.newInstance(), true);
+            replaceFragment(MapFragment.newInstance(), true);
+
             userBtn.setVisibility(View.VISIBLE);
             userActive.setVisibility(View.GONE);
 
@@ -117,7 +114,6 @@ public class WelcomeActivity extends BaseActivity implements PersonDataView {
             mapActive.setVisibility(View.GONE);
         });
         hands_btn.setOnClickListener(v->{
-//            replaceFragment(PersonalFragment.newInstance(), false);
             userBtn.setVisibility(View.VISIBLE);
             userActive.setVisibility(View.GONE);
 
@@ -129,14 +125,10 @@ public class WelcomeActivity extends BaseActivity implements PersonDataView {
 
             mapBtn.setVisibility(View.VISIBLE);
             mapActive.setVisibility(View.GONE);
+            replaceFragment(ChatListFragment.Companion.newInstance(),true);
         });
         addBtn.setOnClickListener(v->{
             replaceFragment(AdsCreateFragment.newInstance(), true);
-//            startActivity(new Intent(this, AddAdsActivity.class));
-//            person_btn.setBackgroundResource(R.drawable.user);
-//            mapBtn.setBackgroundResource(R.drawable.map);
-//            volonterBtn.setBackgroundResource(R.drawable.hands);
-//            adsBtn.setBackgroundResource(R.drawable.ads_full);
         });
     }
 
@@ -158,19 +150,13 @@ public class WelcomeActivity extends BaseActivity implements PersonDataView {
         fragmentTransaction.commit();
     }
 
-    @Override
-    public void message(String str) {
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void message(String str) {
+//        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+//    }
 
     @Override
-    public void getData(PersonData data) {
-        SPHelper.setCity(data.getCity());
-        SPHelper.setPhone(data.getPhone());
-        SPHelper.setName(data.getName());
-        SPHelper.setSurname(data.getSurname());
-        SPHelper.setType(data.getType());
-        SPHelper.setLogin(data.getLogin());
-        SPHelper.setNametype(data.getName_type());
+    public void getType(String type) {
+
     }
 }

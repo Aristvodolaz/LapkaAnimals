@@ -24,8 +24,13 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/round" />
 
-
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="104dp"
+                android:layout_height="104dp"
+                android:src="@drawable/logo"/>
         </FrameLayout>
+
     </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -33,8 +38,10 @@
             android:layout_marginTop="140dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ВХОД"
-            android:textSize="24dp"
+            android:text="Войти"
+            android:stateListAnimator="@null"
+            android:textAllCaps="false"
+            android:textSize="14dp"
             android:textColor="@color/white"
             android:background="@drawable/orange_btn"
             android:layout_marginLeft="50dp"
@@ -42,21 +49,23 @@
             android:gravity="center"
             android:layout_gravity="center"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:stateListAnimator="@null"
+            android:textAllCaps="false"
             android:id="@+id/regist"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/blue_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
+            android:textSize="14dp"
             android:textColor="@color/white"
-            android:text="РЕГИСТРАЦИЯ"
+            android:text="Зарегистрироваться"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center"
             android:layout_gravity="center"/>
 
         <ImageView
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="60dp"
             android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -43,6 +43,7 @@
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.WelcomeActivity" />
         <activity android:name=".activity.AddAdsActivity" />
+        <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.AdsServiceFixActivity" />
         <activity android:name=".activity.AdsFixActivity"
             android:exported="true">

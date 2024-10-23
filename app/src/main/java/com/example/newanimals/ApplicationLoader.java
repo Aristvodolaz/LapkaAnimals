@@ -3,6 +3,8 @@ import android.content.Context;
 
 
 import androidx.multidex.MultiDexApplication;
+
+import com.example.newanimals.db.AdsData;
 import com.example.newanimals.db.AdsDataKt;
 import com.example.newanimals.presenter.GetAddsForLoaderPresenter;
 import com.example.newanimals.utils.NotificationHelper;
@@ -28,7 +30,7 @@ public class ApplicationLoader extends MultiDexApplication implements AdsForLoad
     }
 
     @Override
-    public void getAds(List<AdsDataKt> dataList) {
+    public void getAds(List<AdsData> dataList) {
         for(int i = 0 ; i< dataList.size(); i++) {
             NotificationHelper.showNotification(instance, "Будтье внимательней,\n вы находитесь в радиусе пропавшего животного.",
                     dataList.get(i).getTypeAnimals() + "\n" + dataList.get(i).getName_animals() + "\nДата пропажи:"

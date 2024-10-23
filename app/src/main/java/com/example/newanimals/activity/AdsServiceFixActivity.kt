@@ -1,8 +1,6 @@
 package com.example.newanimals.activity
 
 import android.os.Bundle
-import android.text.TextUtils
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -20,12 +18,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import com.example.newanimals.R
-import com.example.newanimals.fragment.ForgetPassFragmentKt
 import com.google.accompanist.glide.rememberGlidePainter
 
 class AdsServiceFixActivity: ComponentActivity() {
@@ -42,37 +39,31 @@ class AdsServiceFixActivity: ComponentActivity() {
     @Composable
     @Preview
     fun adsView() {
-        Column(modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()) {
-            Row(modifier = Modifier
-                .fillMaxHeight(0.4f)
-                .fillMaxWidth()
-                .background(color = Color.Blue)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
             ) {
-                Box {
-                    Image(
-                        rememberGlidePainter(intent.getStringExtra("imgAnimals")),
-                        contentDescription = "image",
-                        contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize()
-                    )
-                    IconButton(onClick = { this@AdsServiceFixActivity.finish() }) {
-                        Image(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "arrow back",
-                            modifier = Modifier.align(Alignment.TopStart)
-                                .padding(12.dp)
-                        )
+                Image(
+                    painter = rememberGlidePainter(intent.getStringExtra("imgAnimals")),
+                    contentDescription = "image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxWidth()
+                        .height(356.dp)
+                )
 
-                    }
-                }
-            }
-
-            Card(modifier = Modifier
-                .fillMaxHeight(2f)
-                .fillMaxWidth()
-                .background(colorResource(R.color.grey)),
-                shape = RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp)
+                Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.6f)
+                    .zIndex(1f) // Поднимаем Card наверх
+                    .background(color = Color.Transparent) // Прозрачный фон
+                    .align(Alignment.BottomStart), // Выравниваем Card внизу слева
+                shape = RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp),
+                elevation = 8.dp
             ){
 
                 Column(
@@ -101,13 +92,28 @@ class AdsServiceFixActivity: ComponentActivity() {
                         Modifier
                             .fillMaxWidth()
                             .padding(top = 8.dp)) {
-                        Image(   rememberGlidePainter(intent.getStringExtra("imgUser")), contentDescription = "name",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .height(64.dp)
-                                .width(64.dp)
-                                .clip(RoundedCornerShape(50.dp)))
+                        if(intent.getStringExtra("imgUser").equals("")){
+                            Image(
+                                rememberGlidePainter(resources.getDrawable(R.drawable.logo)),
+                                contentDescription = "name",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .height(64.dp)
+                                    .width(64.dp)
+                                    .clip(RoundedCornerShape(50.dp))
+                            )
 
+                        } else {
+                            Image(
+                                rememberGlidePainter(intent.getStringExtra("imgUser")),
+                                contentDescription = "name",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .height(64.dp)
+                                    .width(64.dp)
+                                    .clip(RoundedCornerShape(50.dp))
+                            )
+                        }
                         Column(
                             Modifier.padding(start = 12.dp, top = 12.dp),
                             verticalArrangement = Arrangement.Center
@@ -156,13 +162,23 @@ class AdsServiceFixActivity: ComponentActivity() {
                                 style = MaterialTheme.typography.button.copy(
                                     fontWeight = FontWeight.Bold,
                                     color = Color.White
-                                ))
+                                )
+                            )
                         }
                     }
-                    
+                }
+                }
+
+                IconButton(onClick = { this@AdsServiceFixActivity.finish() }) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "arrow back",
+                        modifier = Modifier
+                            .align(Alignment.TopStart)
+                            .padding(12.dp)
+                    )
                 }
             }
         }
-
     }
 }

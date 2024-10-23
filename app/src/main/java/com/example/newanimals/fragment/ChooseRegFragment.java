@@ -1,10 +1,11 @@
 package com.example.newanimals.fragment;
 
-import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.newanimals.R;
 import com.example.newanimals.activity.MainActivity;
+import com.example.newanimals.fragment.auth_and_reg.RegistrationFragment;
 
 import butterknife.BindView;
 
@@ -18,6 +19,8 @@ public class ChooseRegFragment extends  BaseFragment{
     Button helpBtn;
     @BindView(R.id.workBtn)
     Button workBtn;
+    @BindView(R.id.back_arrow)
+    ImageView backArrow;
     @Override
     protected int layoutId() {
         return R.layout.choose_reg_layout;
@@ -35,5 +38,7 @@ public class ChooseRegFragment extends  BaseFragment{
         workBtn.setOnClickListener(v->{
             ((MainActivity)getActivity()).replaceFragment(RegistrationFragment.newInstance("2","free_user"), false);
         });
+
+        backArrow.setOnClickListener(l->{getActivity().getSupportFragmentManager().popBackStack();});
     }
 }

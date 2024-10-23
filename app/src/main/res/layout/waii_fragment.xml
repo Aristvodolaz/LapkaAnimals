@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="8sp"
+        android:paddingRight="40sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="48sp"
+            android:layout_height="48sp"
+            android:src="@drawable/back_arrow"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cat"
+            android:text="Кошки"
+            android:textColor="@color/orange"
+            android:background="@drawable/background_adapter_button"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="16sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dog"
+            android:text="Собаки"
+            android:textColor="#C8C8C8"
+            android:background="@drawable/background_adapter_button"
+            android:layout_marginLeft="16sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/transparent"
+        android:layout_marginTop="16sp"
+        android:layout_marginLeft="16sp"
+        android:layout_marginRight="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_adapter"/>
+</LinearLayout>

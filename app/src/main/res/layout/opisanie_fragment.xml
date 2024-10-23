@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="48sp"
+        android:layout_height="48sp"
+        android:src="@drawable/back_arrow"/>
+    <TextView
+        android:layout_marginTop="8sp"
+        android:layout_marginLeft="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="Описание"/>
+
+    <TextView
+        android:layout_marginRight="12sp"
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="16sp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Укажите дополнительные данные, чтобы пользователем было легче откликнуться на ваше объявление"/>
+
+    <TextView
+        android:layout_marginTop="16sp"
+        android:layout_marginLeft="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="Порода"/>
+    <EditText
+        android:id="@+id/poroda"
+        android:layout_marginLeft="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите значение"/>
+
+    <TextView
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Окрас животного"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/age"
+        android:layout_marginLeft="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите значение"/>
+
+    <TextView
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Возраст животного"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+    <EditText
+        android:id="@+id/color"
+        android:layout_marginLeft="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите значение"/>
+    <TextView
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Опишите животное"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+    <EditText
+        android:id="@+id/opisanie"
+        android:layout_marginLeft="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите значение"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:stateListAnimator="@null"
+            android:id="@+id/next_btn"
+            android:textColor="@color/white"
+            android:layout_marginTop="24sp"
+            android:background="@drawable/blue_btn"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Продожить"/>
+
+    </LinearLayout>

@@ -6,7 +6,6 @@
 
 
     <FrameLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -45,6 +44,7 @@
                 android:src="@drawable/ads_acitve"
                 android:visibility="gone"/>
             <TextView
+                android:textColor="@color/grey"
                 android:textSize="12dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
@@ -75,6 +75,7 @@
                 android:src="@drawable/map_acitve"
                 android:visibility="gone"/>
             <TextView
+                android:textColor="@color/grey"
                 android:textSize="12dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
@@ -111,11 +112,12 @@
                 android:src="@drawable/hands_active"
                 android:visibility="gone"/>
             <TextView
+                android:textColor="@color/grey"
                 android:textSize="12dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Обсуждения"/>
+                android:text="Сообщения"/>
         </LinearLayout>
 
     <LinearLayout
@@ -140,6 +142,7 @@
             android:src="@drawable/user_active"
             android:visibility="gone"/>
         <TextView
+            android:textColor="@color/grey"
             android:textSize="12dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"

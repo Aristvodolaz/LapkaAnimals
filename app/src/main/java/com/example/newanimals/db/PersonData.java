@@ -11,6 +11,8 @@ public class PersonData {
     String date_birth;
     String login;
 
+    String img;
+
 
     public String getName() {
         return name;
@@ -69,7 +71,10 @@ public class PersonData {
         this.date_birth = date_birth;
     }
 
-    public PersonData(String type, String name_type, String name, String surname, String city, String phone, String date_birth, String login) {
+    public PersonData() {
+    }
+
+    public PersonData(String type, String name_type, String name, String surname, String city, String phone, String date_birth, String login, String img) {
         this.type = type;
         this.name_type = name_type;
         this.name = name;
@@ -78,6 +83,15 @@ public class PersonData {
         this.phone = phone;
         this.date_birth = date_birth;
         this.login = login;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getLogin() {

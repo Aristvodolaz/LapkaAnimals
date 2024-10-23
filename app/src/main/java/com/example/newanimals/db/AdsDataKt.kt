@@ -1,6 +1,7 @@
 package com.example.newanimals.db
 
 data class AdsDataKt(
+
     var type: String,
     var name_type: String,
     var name_animals: String,

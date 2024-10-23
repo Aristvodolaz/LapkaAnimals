@@ -7,15 +7,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.newanimals.R;
-import com.example.newanimals.fragment.AddAdsFindHomeFragment;
+import com.example.newanimals.fragment.add_ads_animals.AddPhotoInAddFragment;
+import com.example.newanimals.fragment.add_ads_service.GetInfoForServiceFragment;
+//import com.example.newanimals.fragment.AddAdsFindHomeFragment;
 
 public class AddAdsActivity extends BaseActivity{
     @Override
     protected void initViews(@Nullable Bundle saveInstanceState) {
-        String type = getIntent().getStringExtra("type");
-        if ((type.equals("house"))){
-            replaceFragment(AddAdsFindHomeFragment.newInstance(), true);
-        }
+        if(getIntent().getStringExtra("type") == null ){
+            replaceFragment(AddPhotoInAddFragment.newInstance(), true);
+        } else if (getIntent().getStringExtra("type").equals("service") ) {
+            replaceFragment(GetInfoForServiceFragment.newInstance(), true);
+        } else replaceFragment(AddPhotoInAddFragment.newInstance(), true);
     }
 
     @Override

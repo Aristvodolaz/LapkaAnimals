@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="8sp"
+    android:paddingLeft="16sp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="48sp"
+        android:layout_height="48sp"
+        android:src="@drawable/back_arrow"/>
+    <TextView
+        android:layout_marginLeft="4sp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Кличка"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Введите кличку животного"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_marginTop="8sp"
+        android:layout_marginLeft="4sp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Окрас"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Введите окрас животного"
+        android:textColor="@color/black"/>
+
+
+
+</LinearLayout>

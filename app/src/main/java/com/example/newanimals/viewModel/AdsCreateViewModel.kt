@@ -3,14 +3,18 @@ package com.example.newanimals.viewModel
 import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import com.example.newanimals.R
 import com.example.newanimals.activity.AddAdsActivity
-import java.time.format.TextStyle
+import com.example.newanimals.utils.SPHelper
 
 class AdsCreateViewModel:ViewModel() {
     
@@ -43,7 +47,8 @@ class AdsCreateViewModel:ViewModel() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color(0xffD9D9D9))
-                    .padding(24.dp).padding(bottom = 64.dp, top = 12.dp)
+                    .padding(24.dp)
+                    .padding(bottom = 64.dp, top = 12.dp)
 
             ) {
                 Text( "Выберите тип объявления\n для публикации",
@@ -70,14 +75,13 @@ class AdsCreateViewModel:ViewModel() {
                             .height(84.dp)
                             .weight(1f)
                             .clickable {
-                                val intent = Intent(context, AddAdsActivity::class.java)
-                                intent.putExtra("type", "free")
-                                context.startActivity(intent)
+                                SPHelper.AdsHelper.setVidAdd("1")
+                                context.startActivity(Intent(context, AddAdsActivity::class.java))
                             },
                         shape = RoundedCornerShape(7.dp)
                     ) {
                         Column(
-                            modifier = Modifier.padding(8.dp),
+                            modifier = Modifier.padding(top = 8.dp , bottom = 1.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Image(
@@ -103,9 +107,8 @@ class AdsCreateViewModel:ViewModel() {
                             .height(84.dp)
                             .weight(1f)
                             .clickable {
-                                val intent = Intent(context, AddAdsActivity::class.java)
-                                intent.putExtra("type", "poterya")
-                                context.startActivity(intent)
+                                SPHelper.AdsHelper.setVidAdd("2")
+                                context.startActivity(Intent(context, AddAdsActivity::class.java))
                             },
                         shape = RoundedCornerShape(7.dp)
                     ) {
@@ -136,9 +139,8 @@ class AdsCreateViewModel:ViewModel() {
                             .height(84.dp)
                             .weight(1f)
                             .clickable {
-                                val intent = Intent(context, AddAdsActivity::class.java)
-                                intent.putExtra("type", "house")
-                                context.startActivity(intent)
+                                SPHelper.AdsHelper.setVidAdd("0")
+                                context.startActivity(Intent(context, AddAdsActivity::class.java))
                             },
                         shape = RoundedCornerShape(7.dp)
                     ) {
@@ -164,16 +166,15 @@ class AdsCreateViewModel:ViewModel() {
                     }
                 }
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceAround
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Card(
                         modifier = Modifier
                             .background(Color(0xffD9D9D9))
-                            .height(84.dp)
+                            .height(86.dp)
                             .weight(1f)
                             .padding(2.dp)
-                            .padding(start = 6.dp, top = 2.dp, bottom = 2.dp)
+                            .padding(start = 6.dp, top = 2.dp, bottom = 1.dp)
                             .clickable {
                                 val intent = Intent(context, AddAdsActivity::class.java)
                                 intent.putExtra("type", "service")
@@ -182,7 +183,7 @@ class AdsCreateViewModel:ViewModel() {
                         shape = RoundedCornerShape(7.dp)
                     ) {
                         Column(
-                            modifier = Modifier.padding(3.dp),
+                            modifier = Modifier.padding( 3.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Image(
@@ -190,7 +191,7 @@ class AdsCreateViewModel:ViewModel() {
                                 contentDescription = "free",
                                 modifier = Modifier
                                     .width(56.dp)
-                                    .height(56.dp)
+                                    .height(54.dp)
                             )
                             Text(
                                 "услуги",
@@ -203,10 +204,10 @@ class AdsCreateViewModel:ViewModel() {
                     Card(
                         modifier = Modifier
                             .background(Color(0xffD9D9D9))
-                            .height(84.dp)
+                            .height(86.dp)
                             .weight(1f)
-                            .padding(4.dp)
-                            .padding(end = 4.dp) .clickable {
+                            .padding(3.dp)
+                            .clickable {
                                 val intent = Intent(context, AddAdsActivity::class.java)
                                 intent.putExtra("type", "perederzhka")
                                 context.startActivity(intent)

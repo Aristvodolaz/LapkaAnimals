@@ -1,19 +1,12 @@
 package com.example.newanimals.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.newanimals.R;
 import com.example.newanimals.activity.MainActivity;
+import com.example.newanimals.fragment.auth_and_reg.LoginFragmentKt;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class StartAppFragment extends BaseFragment{

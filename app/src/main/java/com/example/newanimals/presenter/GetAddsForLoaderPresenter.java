@@ -1,12 +1,18 @@
 package com.example.newanimals.presenter;
 
+import androidx.annotation.NonNull;
+
+import com.example.newanimals.db.AdsData;
 import com.example.newanimals.db.AdsDataKt;
+import com.example.newanimals.network.Const;
 import com.example.newanimals.utils.ReadRXFirebaseUtil;
 import com.example.newanimals.utils.SPHelper;
 import com.example.newanimals.view.AdsForLoaderView;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,60 +24,48 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class GetAddsForLoaderPresenter {
     private AdsForLoaderView view;
-    private List<AdsDataKt> ads = new ArrayList<>();
-    private List<AdsDataKt> adsLat = new ArrayList<>();
+    private List<AdsData> ads = new ArrayList<>();
+    private List<AdsData> adsLtn = new ArrayList<>();
 
 
     public GetAddsForLoaderPresenter(AdsForLoaderView view) {
         this.view = view;
     }
 
-    public void getAdsInfo(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dataRef = database.getReference("AdsData");
+    public void getAdsInfo() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance(Const.URL);
+        DatabaseReference adsDB = database.getReference().child("AdsData");
+        adsDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    AdsData adsData = childSnapshot.getValue(AdsData.class);
+                    if (adsData != null) {
+                        ads.add(adsData);
+                    }
+                }
+               if(!ads.isEmpty()) {
+                   for (int i = 0; i < ads.size(); i++) {
+                       boolean isZone = checkZone(Double.parseDouble(ads.get(i).getLat()), Double.parseDouble(ads.get(i).getLon()));
+                       if (isZone) adsLtn.add(ads.get(i));
+                   }
+               }
+               if(!adsLtn.isEmpty() && adsLtn!=null) view.getAds(adsLtn);
 
-//        ReadRXFirebaseUtil.observeValueEvent(dataRef)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<DataSnapshot>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//                        // Выполняется при подписке
-//                    }
-//
-//                    @Override
-//                    public void onNext(DataSnapshot dataSnapshot) {
-//                        AdsData data = dataSnapshot.getValue(AdsData.class);
-//                        if(data!=null){
-//                            ads.add(data);
-//                            for(int i = 0 ; i < ads.size(); i++){
-//                                boolean isZone = checkZone(ads.get(i).getLat(),ads.get(i).getLon());
-//                                if(isZone){
-//                                    adsLat.add(ads.get(i));
-//                                }
-//                            }
-//                            if(adsLat!=null)
-//                                view.getAds(adsLat);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        processLarge(ads);
-//                    }
-//                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
+
 
     private boolean checkZone(double lat, double lon){
         double result = 111.2 * Math.sqrt((lon - SPHelper.getLon())*(lon - SPHelper.getLon())
                 + (lat - SPHelper.getLat())*Math.cos(Math.PI*lon/180)*(lat - SPHelper.getLat())*Math.cos(Math.PI*lon/180)) * 1000;
-        if(result>250)
-            return false;
-        else return true;
+        return !(result > 250);
     }
     private static void processLarge(List<AdsDataKt> data){
         System.out.println("Total data count: " + data.size());

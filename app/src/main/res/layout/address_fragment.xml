@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="48sp"
+        android:layout_height="48sp"
+        android:src="@drawable/back_arrow"/>
+    <TextView
+        android:layout_marginTop="8sp"
+        android:layout_marginLeft="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="Адрес"/>
+
+
+    <EditText
+        android:layout_marginTop="16dp"
+        android:id="@+id/address"
+        android:layout_marginLeft="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите значение"/>
+    <TextView
+        android:layout_marginRight="12sp"
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="4sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Укажите место пропажи/нахождения найденного/потерянного Вами животного."
+        android:textSize="12sp"
+        android:textColor="@color/black"/>
+
+<LinearLayout
+    android:id="@+id/visable"
+    android:layout_marginTop="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+
+        android:layout_marginLeft="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Дата пропажи"/>
+
+    <com.github.pinball83.maskededittext.MaskedEditText
+        app:mask="**.**.****"
+        app:notMaskedSymbol="*"
+
+        android:id="@+id/date"
+        android:layout_marginLeft="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите значение"/>
+
+</LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:stateListAnimator="@null"
+        android:id="@+id/next_btn"
+        android:textColor="@color/white"
+        android:layout_marginTop="24sp"
+        android:background="@drawable/blue_btn"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Опубликовать"/>
+
+</LinearLayout>

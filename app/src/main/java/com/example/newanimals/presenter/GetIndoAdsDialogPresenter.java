@@ -1,11 +1,19 @@
 package com.example.newanimals.presenter;
 
+import androidx.annotation.NonNull;
+
 import com.example.newanimals.db.AdsDataKt;
+import com.example.newanimals.network.Const;
 import com.example.newanimals.utils.ReadRXFirebaseUtil;
+import com.example.newanimals.utils.SPHelper;
 import com.example.newanimals.view.GetInfoAdsDialogView;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 
@@ -24,7 +32,7 @@ public class GetIndoAdsDialogPresenter {
     }
 
     public void getInfoAds(String name, String date, String mesto){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 //        DatabaseReference dataRef = database.getReference("AdsData");
 //        ReadRXFirebaseUtil.observeValueEvent(dataRef)
 //                .subscribeOn(Schedulers.io())

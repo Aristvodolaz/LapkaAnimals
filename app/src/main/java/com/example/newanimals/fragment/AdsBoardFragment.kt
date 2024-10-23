@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.newanimals.viewModel.AdsBoardViewModel
+import com.example.newanimals.viewModel.board.AdsBoardViewModel
 
 class AdsBoardFragment:Fragment() {
     private lateinit var viewModel: AdsBoardViewModel

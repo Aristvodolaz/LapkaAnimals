@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160sp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    android:background="@color/grey"
+    app:cardElevation="40sp"
+    app:cardCornerRadius="20sp"
+    android:layout_marginBottom="2sp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="8sp"
+            android:layout_marginLeft="4sp"
+            android:layout_marginRight="4sp"
+            android:background="@color/transparent"
+            app:cardCornerRadius="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="80sp"
+                android:id="@+id/image"
+                android:src="@drawable/cat"/>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/name_cat"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Муся"/>
+            <ImageView
+                android:id="@+id/pol"
+                android:layout_marginLeft="4sp"
+                android:layout_gravity="center"
+                android:layout_width="11sp"
+                android:layout_height="16sp"
+                android:src="@drawable/pol_girl"/>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_marginTop="4sp"
+            android:layout_marginRight="8sp"
+            android:layout_marginLeft="8sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="20dp"
+                android:layout_height="14dp"
+                android:src="@drawable/location"/>
+            <TextView
+                android:id="@+id/location"
+                android:textColor="@color/black"
+                android:layout_marginLeft="2sp"
+                android:layout_gravity="center"
+                android:textSize="9sp"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:text="Выгул домашнего животного"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="8sp"
+            android:layout_marginTop="4sp"
+            android:layout_marginRight="8sp"
+            android:layout_marginLeft="8sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginLeft="2sp"
+                android:layout_gravity="center"
+                android:layout_width="19dp"
+                android:layout_height="13dp"
+                android:src="@drawable/date_image"/>
+            <TextView
+                android:id="@+id/date"
+                android:textColor="@color/black"
+                android:layout_marginLeft="2sp"
+                android:layout_gravity="center"
+                android:textSize="9sp"
+                android:layout_width="90sp"
+                android:layout_height="wrap_content"
+                android:text="15:20 | 23 мая 2023"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
